@@ -1,5 +1,8 @@
 package project.model;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class MovieRating extends BaseModel{
     private int userId;
     private int movieId;

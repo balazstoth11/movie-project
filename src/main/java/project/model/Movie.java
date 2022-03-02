@@ -1,10 +1,9 @@
 package project.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Entity
 public class Movie extends BaseModel {
     @Column
     private String title;
@@ -14,15 +13,15 @@ public class Movie extends BaseModel {
     private Category category;
     @Column
     private String director;
-    @Column
-    private List<String> cast;
 
-    public Movie(String title, int productionYear, Category category, String director, List<String> cast) {
+    protected Movie() {
+    }
+
+    public Movie(String title, int productionYear, Category category, String director) {
         this.title = title;
         this.productionYear = productionYear;
         this.category = category;
         this.director = director;
-        this.cast = cast;
     }
 
     public String getTitle() {
@@ -41,7 +40,10 @@ public class Movie extends BaseModel {
         return director;
     }
 
-    public List<String> getCast() {
-        return new ArrayList<>(cast);
+    @Override
+    public String toString() {
+        return "Movie [title=" + title + ", productionYear=" + productionYear + ", category=" + category + ", director="
+                + director + "]";
     }
+    
 }

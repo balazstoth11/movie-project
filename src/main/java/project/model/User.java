@@ -2,8 +2,6 @@ package project.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.time.LocalDate;
 
 @Entity
@@ -18,18 +16,20 @@ public class User extends BaseModel {
     private Integer yearOfBirth;
     @Column(name = "registration_date")
     private LocalDate registrationDate;
-    @Column
-    private String password;
+
     @Column(name = "user_name")
     private String userName;
 
-    public User(String firstName, String lastName, String eMailAddress, int yearOfBirth, LocalDate registrationDate, String password, String userName) {
+    protected User() {
+    }
+
+    public User(String firstName, String lastName, String eMailAddress, int yearOfBirth, LocalDate registrationDate,
+            String userName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMailAddress = eMailAddress;
         this.yearOfBirth = yearOfBirth;
         this.registrationDate = registrationDate;
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.userName = userName;
 
     }
@@ -54,10 +54,6 @@ public class User extends BaseModel {
         return registrationDate;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -65,4 +61,12 @@ public class User extends BaseModel {
     public int userAge() {
         return LocalDate.now().getYear() - yearOfBirth;
     }
+
+    @Override
+    public String toString() {
+        return "User [firstName=" + firstName + ", lastName=" + lastName + ", eMailAddress=" + eMailAddress
+                + ", yearOfBirth=" + yearOfBirth + ", registrationDate=" + registrationDate + ", userName=" + userName
+                + "]";
+    }
+
 }

@@ -1,13 +1,13 @@
 package project.controller;
 
-import project.dao.UserDao;
+import project.dao.BaseDao;
 import project.model.User;
 
 public class AuthController {
 
-    private UserDao dao;
+    private BaseDao dao;
 
-    public AuthController(UserDao dao) {
+    public AuthController(BaseDao dao) {
         this.dao = dao;
     }
 
